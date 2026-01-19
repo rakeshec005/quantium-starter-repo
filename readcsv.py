@@ -20,12 +20,12 @@ def merge_sales_files(data_dir='data', output_path='output.csv'):
                     region = row[4].strip()
                     if product_name == 'pink morsel':
                         try:
-                            price = float(price_str.replace('$', '').replace(',', ''))
+                            price = float(price_str[1:])
                             qty = int(quantity)
                         except Exception:
                             continue
                         sales_amount = price * qty
-                        writer.writerow([f"{sales_amount:.2f}", date, region])
+                        writer.writerow([sales_amount, date, region])
 
 if __name__ == '__main__':
     merge_sales_files()
